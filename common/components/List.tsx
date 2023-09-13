@@ -1,29 +1,23 @@
-import { map } from "unyt_core/datex.ts";
-import { Path } from "uix/utils/path.ts";
-import { IEL, UIX } from "uix";
-import { Pointer } from "unyt_core/datex_all.ts";
-import { type SharedList, type ListItem } from "backend/entrypoint.tsx";
-import { always } from "unyt_core/datex_short.ts";
-import { querySelector } from "uix/standalone/shadow_dom_selector.ts";
-
+import { UIX } from "uix";
+import { type SharedList } from "backend/entrypoint.tsx";
+import { map } from "unyt_core/functions.ts";
 
 @UIX.template(function(this: List) {
-	const list = this.$.options.$.list as unknown as Pointer<SharedList>;
+	console.log(this.options.list.items)
 	return <div>
 		<div class="header">
-			<h1>{list.$.title}</h1>
+			<h1>{this.options.$.list.$.title}</h1>
 		</div>
 		<ol>
 			{
-				always(()=>{
-					return list.$.items.val?.map((item, index) => <li 
+				map(this.options.list.items, (item, index) => 
+					<li 
 						data-checked={item.checked ?? false}
 						onclick={UIX.inDisplayContext(() => item.checked = !item.checked )}>
-						<input type="checkbox"/>
-						<b>{item.name}</b>
-						<span>{item.amount} {item.type}{item.amount! > 1 ? 's': ''}</span>
-					</li>);
-				})
+							<input type="checkbox"/>
+							<b>{item.name}</b>
+							<span>{item.amount} {item.type}{item.amount! > 1 ? 's': ''}</span>
+					</li>)
 			}
 		</ol>
 		<div class="button add-button" onclick={UIX.inDisplayContext(() => this.toggleDialog())}>
@@ -40,19 +34,17 @@ import { querySelector } from "uix/standalone/shadow_dom_selector.ts";
 				<option>Piece</option>
 				<option>Whatever</option>
 			</select>
-			<div id="add" onclick={UIX.inDisplayContext(() => {
-				(querySelector("uix2-list")! as List).addItem();
-			})}>Add</div>
+			<div id="add" onclick={UIX.inDisplayContext(() => this.addItem())}>Add</div>
 		</div>
 	</div>
 })
 export class List extends UIX.BaseComponent<UIX.BaseComponent.Options & {list: SharedList}> {
-	@standalone @id declare main: HTMLElement;
+	
 	@use declare strings: {[key: string]: string };
-	@id("name") declare name: HTMLInputElement;
-	@id("amount") declare amount: HTMLInputElement;
-	@id("type") declare type: HTMLOptionElement;
-	@id("dialog") declare dialog: HTMLDivElement;
+	@id declare name: HTMLInputElement;
+	@id declare amount: HTMLInputElement;
+	@id declare type: HTMLOptionElement;
+	@id declare dialog: HTMLDivElement;
 
 	override getInternalRoute() {
 		return [globalThis.location.pathname]
@@ -62,35 +54,31 @@ export class List extends UIX.BaseComponent<UIX.BaseComponent.Options & {list: S
 		console.log(this.options.list.items, "<<")
 	}
 
-	@standalone
 	toggleDialog(value?: boolean) {
 		this.dialog.classList.toggle("active", value);
 	}
 
-	@bindOrigin
 	removeChecked() {
+		
 		// FIXME Throws DATEX error
 		// this.options.$.list.$.items.val = this.options.$.list.$.items.val?.filter(e => !e.checked)
 		
 		// FIXME ERROR
-		this.$.options.$.list.$.items.setVal(
-			this.options.list.items.filter(e => !e.checked)
-		)
+		// this.$.options.$.list.$.items.setVal(
+		// 	this.options.list.items.filter(e => !e.checked)
+		// )
 
-		/* FIXME Also error with those lines:
 		const items = this.options.list.items;
-		console.log("items", items)
+
 		for (let i = items.length; i--;) {
-			console.log(items[i])
 			if (items[i].checked) {
-				items.splice(i, 1);
+				console.log("delete", items[i])
 				delete items[i]
 			}
 		}
-		*/
+		
 	}
 
-	@bindOrigin
 	addItem() {
 		if (!this.name.value)
 			return alert("Please enter a name");
@@ -103,7 +91,4 @@ export class List extends UIX.BaseComponent<UIX.BaseComponent.Options & {list: S
 		this.toggleDialog(false);
 	}
 
-	override onCreate() {
-		
-	}
 }
