@@ -1,0 +1,25 @@
+{
+	"importMap": "./importmap.dev.json",
+	"compilerOptions": {
+		"module": "esnext",
+		"target": "es2022",
+		"noImplicitOverride":true,
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"esModuleInterop": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"jsx": "react-jsx",
+		"jsxImportSource": "uix",
+		"lib": [
+			"deno.window",
+			"dom",
+			"esnext"
+		]
+	},
+	"tasks": {
+		"run": "uix",
+		"run-dev": "uix -wr",
+		"run-uixdev": "deno run -Aqr http://localhost:4200/run.ts -wr --import-map importmap.uixdev.json"
+	}
+}

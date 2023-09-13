@@ -1,0 +1,13 @@
+use stage from #public.uix;
+
+endpoint: stage {
+	prod: @+example_list
+},
+
+location: stage {
+	prod: @+unyt_eu1
+},
+
+domain: stage {
+	prod: 'shared-list.unyt.app'
+}
