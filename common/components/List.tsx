@@ -11,13 +11,13 @@ import { map } from "unyt_core/functions.ts";
 		<ol>
 			{
 				map(this.options.list.items, (item, index) => 
-					<li 
+					item ? <li 
 						data-checked={item.checked ?? false}
 						onclick={UIX.inDisplayContext(() => item.checked = !item.checked )}>
 							<input type="checkbox"/>
 							<b>{item.name}</b>
 							<span>{item.amount} {item.type}{item.amount! > 1 ? 's': ''}</span>
-					</li>)
+					</li> : undefined)
 			}
 		</ol>
 		<div class="button add-button" onclick={UIX.inDisplayContext(() => this.toggleDialog())}>
@@ -71,7 +71,7 @@ export class List extends UIX.BaseComponent<UIX.BaseComponent.Options & {list: S
 		const items = this.options.list.items;
 
 		for (let i = items.length; i--;) {
-			if (items[i].checked) {
+			if (items[i]?.checked) {
 				console.log("delete", items[i])
 				delete items[i]
 			}
