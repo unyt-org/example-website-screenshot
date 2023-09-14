@@ -10,7 +10,6 @@ import { map, always } from "unyt_core/functions.ts";
 		<ol>
 			{
 				map(this.options.list.items, (item, index) => 
-					item && 
 					<li data-checked={item.$.checked}>
 						<input type="checkbox" checked={item.$.checked} id={`checkbox-${index}`}/>
 						<label for={`checkbox-${index}`}>{item.$.name}</label>
