@@ -1,6 +1,0 @@
-use localtext from #std;
-
-# strings ----------------------------------
-export val strings = {
-	
-};
