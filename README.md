@@ -39,7 +39,7 @@ We split our code base in [back-end](https://unyt.org/glossary#back-end), [front
     │   ├── entrypoint.css      // Front-end style declaration
     │   └── entrypoint.tsx      // Front-end entrypoint
     ├── app.dx                  // Endpoint config file
-    └── importmap.json          // Importmap
+    └── deno.json          // Deno config file
 ```
 
 ## Features
