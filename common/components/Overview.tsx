@@ -1,5 +1,5 @@
-import { IEL, UIX } from "uix";
-import { SharedList } from "backend/entrypoint.tsx";
+import { UIX } from "uix";
+import { SharedList } from "backend/lists.ts";
 
 @UIX.template(function(this: Overview) {
 	return <div>

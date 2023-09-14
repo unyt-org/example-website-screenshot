@@ -1,10 +1,8 @@
 import { UIX } from "uix";
-import { type SharedList } from "backend/entrypoint.tsx";
-import { map } from "unyt_core/functions.ts";
-import { always } from 'unyt_core/datex_short.ts';
+import { type SharedList } from "backend/lists.ts";
+import { map, always } from "unyt_core/functions.ts";
 
 @UIX.template(function(this: List) {
-	const items = this.options.$.list.$.items;
 	return <div>
 		<div class="header">
 			<h1>{this.options.$.list.$.title}</h1>
@@ -12,25 +10,14 @@ import { always } from 'unyt_core/datex_short.ts';
 		<ol>
 			{
 				map(this.options.list.items, (item, index) => 
-					item && <li 
-						data-checked={item.checked ?? false}
-						onclick={UIX.inDisplayContext(() => { item.checked = !item.checked; } )}>
-							<input type="checkbox"/>
-							<b>{item.name}</b>
-							<span>{item.amount} {item.type}{item.amount! > 1 ? 's': ''}</span>
-					</li>)
+					item && 
+					<li data-checked={item.$.checked}>
+						<input type="checkbox" checked={item.$.checked} id={`checkbox-${index}`}/>
+						<label for={`checkbox-${index}`}>{item.$.name}</label>
+						<span>{item.$.amount} {item.$.type}{always(()=>item.amount! > 1 ? 's': '')}</span>
+					</li>
+				)
 			}
-			{/* {
-				always(()=>{
-					return items.val?.map(item => item && <li 
-						data-checked={item.checked ?? false}
-						onclick={UIX.inDisplayContext(() => (item.checked = !item.checked) )}>
-							<input checked={item.checked ?? false} type="checkbox"/>
-							<b>{item.name}</b>
-							<span>{item.amount} {item.type}{item.amount! > 1 ? 's': ''}</span>
-					</li>)
-				})
-			} */}
 		</ol>
 		<div class="button add-button" onclick={UIX.inDisplayContext(() => this.toggleDialog())}>
 			Add Item
@@ -57,11 +44,6 @@ export class List extends UIX.BaseComponent<UIX.BaseComponent.Options & {list: S
 	@id declare type: HTMLOptionElement;
 	@id declare dialog: HTMLDivElement;
 
-	// Method that returns the internal route of the component
-	override getInternalRoute() {
-		return [globalThis.location.pathname]
-	}
-
 	// Life-cycle method that is called when the component is displayed
 	protected override onDisplay(): void | Promise<void> {
 		console.info("The list pointer", this.options.list)
@@ -74,12 +56,10 @@ export class List extends UIX.BaseComponent<UIX.BaseComponent.Options & {list: S
 
 	// Cleanup method that removes all checked items
 	private removeChecked() {
-		// FIXME Add slice
-		const items = this.options.list.items;
-		for (let i = items.length; i--;) {
-			if (items[i]?.checked) {
-				console.info("Deleting item:", items[i])
-				delete items[i];
+		for (const item of [...this.options.list.items]) {
+			if (item.checked) {
+				console.info("Deleting item:", item)
+				this.options.list.items.delete(item)
 			}
 		}
 	}
@@ -88,11 +68,14 @@ export class List extends UIX.BaseComponent<UIX.BaseComponent.Options & {list: S
 	private addItem() {
 		if (!this.name.value)
 			return alert("Please enter a name");
-		this.options.list.items.push({
+		
+		this.options.list.items.add($$({
+			checked: false,
 			name: this.name.value,
-			amount: +this.amount.value,
+			amount: Number(this.amount.value),
 			type: this.type.value,
-		});
+		}));
+		
 		this.toggleDialog(false);
 	}
 }
