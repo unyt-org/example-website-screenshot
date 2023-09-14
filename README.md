@@ -50,7 +50,7 @@ We split our code base in [back-end](https://unyt.org/glossary#back-end), [front
 * Unchecked items can be auto-removed
 
 ## Preview
-<img src=".github/screenshot.png">
+<img src=".github/screenshot.png" width="400">
 
 
 ## Explanation
