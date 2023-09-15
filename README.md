@@ -29,9 +29,9 @@ We split our code base in [back-end](https://unyt.org/glossary#back-end), [front
     │   ├── .dx                 // Config file for deployment
     │   └── entrypoint.tsx      // Back-end entrypoint
     ├── common/
-    │   ├── compoments/
-    │   │   ├── MainPage.scss   // Main style declaration
-    │   │   └── MainPage.tsx    // Main component
+    │   └── compoments/
+    │       ├── MainPage.scss   // Main style declaration
+    │       └── MainPage.tsx    // Main component
     ├── frontend/
     │   ├── entrypoint.css      // Front-end style declaration
     │   └── entrypoint.tsx      // Front-end entrypoint
