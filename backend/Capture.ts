@@ -17,7 +17,7 @@ export default class Capture {
 		});
 		const result = await page.screenshot({
 			fullPage
-		}) as Buffer;
+		}) as Uint8Array;
 		await browser.close();
 		return result;
 	}

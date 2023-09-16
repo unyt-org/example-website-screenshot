@@ -1,13 +1,14 @@
 import { UIX } from "uix";
 import { Screenshot } from 'backend/entrypoint.tsx';
+import { Path } from "uix/utils/path.ts";
 
 @UIX.template(function(this: MainPage) {
 	return <div>
 		<h1>UIX Screenshot <b>App</b></h1>
 		<span>Get a screenshot of any given URL.</span>
 
-		<input id="url" value="https://example.com" type={"url"} placeholder={"Enter URL here..."}/>
-		<div id="submit" onclick={UIX.inDisplayContext(()=>this.capture())} class="submit active">Capture</div>
+		<input id="url" value="https://example.com" type="url" placeholder="Enter URL here..."/>
+		<div id="submit" onclick={()=>this.capture()} class="submit active">Capture</div>
 
 		<p>Screenshot</p>
 		<div id="images"/>
@@ -31,12 +32,13 @@ export class MainPage extends UIX.BaseComponent {
 		try {
 			const image = await Screenshot.take(url);
 			this.images.prepend(image);
-		} catch (error) {
+		} 
+		catch (error) {
 			console.error(error);
 			alert("Oups, could not create screenshot!");
-		} finally {
-			this.submit.classList.toggle("active", true);
-			this.url.disabled = false;
-		}
+		} 
+		
+		this.submit.classList.toggle("active", true);
+		this.url.disabled = false;
 	}
 }

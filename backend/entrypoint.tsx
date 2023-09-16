@@ -5,6 +5,7 @@ import { Path } from "uix/utils/path.ts";
 import { timeout } from "unyt_core/datex_all.ts";
 
 @endpoint export class Screenshot {
+
 	@timeout(40_000)
 	@property static async take(url: string | URL, config?: {
 		width: number,
@@ -27,7 +28,7 @@ import { timeout } from "unyt_core/datex_all.ts";
 		return this.getImage(filePath);
 	}
 
-	static getImage(filePath: Path<`${string}:`, boolean>) {
+	private static getImage(filePath: Path<`${string}:`, boolean>) {
 		return <img src={'/image/'.concat(filePath.name)}/> as HTMLImageElement;
 	}
 }
