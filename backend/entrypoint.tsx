@@ -6,6 +6,7 @@ import { FileProvider } from "uix/html/entrypoint-providers.tsx";
 import { UIX } from "uix";
 
 @endpoint export class Screenshot {
+
 	@timeout(40_000)
 	@property static async take(url: string | URL, config?: {
 		width: number,
@@ -28,7 +29,7 @@ import { UIX } from "uix";
 		return this.getImage(filePath);
 	}
 
-	static getImage(filePath: Path<`${string}:`, boolean>) {
+	private static getImage(filePath: Path<`${string}:`, boolean>) {
 		return <img src={'/image/'.concat(filePath.name)}/> as HTMLImageElement;
 	}
 }

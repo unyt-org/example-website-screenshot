@@ -3,7 +3,7 @@
 This repository demonstrates some essential concept of the [UIX](https://uix.unyt.org) framework such as [Realm Imports](https://unyt.org/glossary#realm-import) and [Web components](https://unyt.org/glossary#web-components) using the example of a **website screenshot app**.
 
 
-The repository includes persistent file storage and implements [front-end](https://unyt.org/glossary#back-end).
+The repository includes persistent file storage and implements [front-end](https://unyt.org/glossary#front-end).
 
 ## Installation
 1. Install the **UIX command line tool** following the [Getting Started](https://docs.unyt.org/manual/uix/getting-started#the-uix-command-line-tool) guide in our documentation.
@@ -29,9 +29,9 @@ We split our code base in [back-end](https://unyt.org/glossary#back-end), [front
     │   ├── .dx                 // Config file for deployment
     │   └── entrypoint.tsx      // Back-end entrypoint
     ├── common/
-    │   ├── compoments/
-    │   │   ├── MainPage.scss   // Main style declaration
-    │   │   └── MainPage.tsx    // Main component
+    │   └── compoments/
+    │       ├── MainPage.scss   // Main style declaration
+    │       └── MainPage.tsx    // Main component
     ├── frontend/
     │   ├── entrypoint.css      // Front-end style declaration
     │   └── entrypoint.tsx      // Front-end entrypoint
