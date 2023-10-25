@@ -8,8 +8,8 @@
         "uix/": "https://dev.cdn.unyt.org/uix1/src/",
         "uix/jsx-runtime": "https://dev.cdn.unyt.org/uix1/src/jsx-runtime/jsx.ts",
         "unyt-tests/": "https://dev.cdn.unyt.org/unyt_tests/",
-        "common": "./common/",
-        "backend": "./backend/",
-        "frontend": "./frontend/"
+        "common/": "./common/",
+        "backend/": "./backend/",
+        "frontend/": "./frontend/"
     }
 }
