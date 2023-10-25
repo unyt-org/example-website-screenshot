@@ -1,19 +1,20 @@
-import { UIX } from "uix";
 import { Screenshot } from 'backend/entrypoint.tsx';
+import { Component } from 'uix/components/Component.ts';
+import { template } from "uix/html/template.ts";
 
-@UIX.template(function(this: MainPage) {
+@template(function(this: MainPage) {
 	return <div>
 		<h1>UIX Screenshot <b>App</b></h1>
 		<span>Get a screenshot of any given URL.</span>
 
 		<input id="url" value="https://example.com" type={"url"} placeholder={"Enter URL here..."}/>
-		<div id="submit" onclick={UIX.inDisplayContext(()=>this.capture())} class="submit active">Capture</div>
+		<div id="submit" onclick:frontend={()=>this.capture()} class="submit active">Capture</div>
 
 		<p>Screenshot</p>
 		<div id="images"/>
 	</div>
 })
-export class MainPage extends UIX.BaseComponent {
+export class MainPage extends Component {
 	@id declare url: HTMLInputElement;
 	@id declare images: HTMLDivElement;
 	@id declare submit: HTMLDivElement;

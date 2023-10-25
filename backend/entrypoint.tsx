@@ -1,8 +1,9 @@
-import { UIX } from "uix/uix.ts";
-import { UIX_CACHE_PATH } from "uix/uix_all.ts";
 import Capture from './Capture.ts';
 import { Path } from "uix/utils/path.ts";
 import { timeout } from "unyt_core/datex_all.ts";
+import { Entrypoint } from "uix/html/entrypoints.ts";
+import { FileProvider } from "uix/html/entrypoint-providers.tsx";
+import { UIX } from "uix";
 
 @endpoint export class Screenshot {
 	@timeout(40_000)
@@ -12,7 +13,7 @@ import { timeout } from "unyt_core/datex_all.ts";
 		fullSize?: boolean
 	}): Promise<HTMLImageElement> {
 		const fileName = `${url.toString().replaceAll(/[^a-zA-Z0-9\?\-\.]+/g, '_')}.png`;
-		const filePath = UIX_CACHE_PATH.getChildPath(fileName);
+		const filePath = UIX.cacheDir.getChildPath(fileName);
 		if (filePath.fs_exists)
 			return this.getImage(filePath);
 
@@ -35,5 +36,5 @@ import { timeout } from "unyt_core/datex_all.ts";
 // The backend routes definition
 export default {
 	'/': null,
-	'/image/*': new UIX.FileProvider(UIX_CACHE_PATH)
-} satisfies UIX.Entrypoint;
+	'/image/*': new FileProvider(UIX.cacheDir)
+} satisfies Entrypoint;
