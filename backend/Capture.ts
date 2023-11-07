@@ -13,8 +13,9 @@ export default class Capture {
 		const page = await browser.newPage();
 		await page.setViewport(size);
 		await page.goto(url.toString(), {
-			waitUntil: "networkidle2"
+			waitUntil: "domcontentloaded"
 		});
+		await sleep(1_000);
 		const result = await page.screenshot({
 			fullPage
 		}) as Uint8Array;
