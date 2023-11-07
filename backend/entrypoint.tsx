@@ -4,6 +4,7 @@ import { timeout } from "unyt_core/datex_all.ts";
 import { Entrypoint } from "uix/html/entrypoints.ts";
 import { FileProvider } from "uix/html/entrypoint-providers.tsx";
 import { UIX } from "uix";
+UIX.Theme.setMode("dark");
 
 @endpoint export class Screenshot {
 
