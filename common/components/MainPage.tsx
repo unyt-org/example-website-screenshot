@@ -6,7 +6,6 @@ import { template } from "uix/html/template.ts";
 	return <div>
 		<h1>UIX Screenshot <b>App</b></h1>
 		<span>Get a screenshot of any given URL.</span>
-
 		<input id="url" value="https://example.com" type={"url"} placeholder={"Enter URL here..."}/>
 		<div id="submit" onclick:frontend={()=>this.capture()} class="submit active">Capture</div>
 
