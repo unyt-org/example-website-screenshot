@@ -1,13 +1,13 @@
 use stage from #public.uix;
 
 endpoint: stage {
-	prod: @+example_screenshot
+	prod: @+screenshot-example
 },
 
 location: stage {
-	prod: @+unyt_eu1
+	prod: @+unyt-host-1
 },
 
 domain: stage {
-	prod: 'screenshot.unyt.app'
+	prod: 'screenshot.example.unyt.org'
 }

@@ -29,7 +29,7 @@ We split our code base in [back-end](https://unyt.org/glossary#back-end), [front
     │   ├── .dx                 // Config file for deployment
     │   └── entrypoint.tsx      // Back-end entrypoint
     ├── common/
-    │   └── compoments/
+    │   └── components/
     │       ├── MainPage.scss   // Main style declaration
     │       └── MainPage.tsx    // Main component
     ├── frontend/
@@ -58,4 +58,4 @@ To access files the back-end exposes a route via UIX.FileProvider to serve stati
 
 ---
 
-<sub>&copy; unyt 2023 • [unyt.org](https://unyt.org)</sub>
+<sub>&copy; unyt 2024 • [unyt.org](https://unyt.org)</sub>

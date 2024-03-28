@@ -14,9 +14,9 @@ import { template } from "uix/html/template.ts";
 	</div>
 })
 export class MainPage extends Component {
-	@id declare url: HTMLInputElement;
-	@id declare images: HTMLDivElement;
-	@id declare submit: HTMLDivElement;
+	@id url!: HTMLInputElement;
+	@id images!: HTMLDivElement;
+	@id submit!: HTMLDivElement;
 
 	private async capture() {
 		if (!this.submit.classList.contains("active"))

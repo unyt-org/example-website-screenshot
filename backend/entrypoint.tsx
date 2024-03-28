@@ -6,8 +6,8 @@ import { FileProvider } from "uix/html/entrypoint-providers.tsx";
 import { UIX } from "uix";
 UIX.Theme.setMode("dark");
 
-@endpoint export class Screenshot {
-
+@endpoint
+export class Screenshot {
 	@timeout(40_000)
 	@property static async take(url: string | URL, config?: {
 		width: number,
