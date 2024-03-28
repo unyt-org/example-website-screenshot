@@ -43,7 +43,7 @@ We split our code base in [back-end](https://unyt.org/glossary#back-end), [front
 * Take screenshot on the back-end
 * Display of screenshot on front-end
 * Auto caching support
-* Exposes UIX.FileProvider on `/image/*`-route
+* Exposes FileProvider on `/image/*`-route
 
 ## Preview
 <img src=".github/screenshot.png" width="400">
@@ -54,7 +54,7 @@ We split our code base in [back-end](https://unyt.org/glossary#back-end), [front
 To provide a seamless experience, our screenshot app demonstrates how to persistently store files. This means that even if the application is restarted, previous screenshots will be stored.
 
 ### File Provider
-To access files the back-end exposes a route via UIX.FileProvider to serve static files.
+To access files the back-end exposes a route via FileProvider to serve static files.
 
 ---
 
