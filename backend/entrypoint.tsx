@@ -4,11 +4,11 @@ import { timeout } from "unyt_core/datex_all.ts";
 import { Entrypoint } from "uix/html/entrypoints.ts";
 import { FileProvider } from "uix/html/entrypoint-providers.tsx";
 import { UIX } from "uix";
-import { exec } from "https://deno.land/x/exec@0.0.5/mod.ts";
+import { bash } from "https://deno.land/x/bash@0.2.0/mod.ts";
 
 UIX.Theme.setMode("dark");
 
-exec("PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@16.2.0/install.ts")
+bash("PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@16.2.0/install.ts")
 	.then(() => console.info("Successfully installed puppeteer"))
 	.catch(console.error);
 
