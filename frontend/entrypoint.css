@@ -1,3 +1,5 @@
-slot#main {
+body {
 	overflow-y: scroll;
+	max-width: 1000px;
+	margin: auto!important;
 }

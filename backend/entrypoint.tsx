@@ -1,8 +1,8 @@
 import Capture from './Capture.ts';
 import { Path } from "uix/utils/path.ts";
-import { timeout } from "unyt_core/datex_all.ts";
-import { Entrypoint } from "uix/html/entrypoints.ts";
-import { FileProvider } from "uix/html/entrypoint-providers.tsx";
+import { timeout } from "datex-core-legacy/datex_all.ts";
+import { type Entrypoint } from "uix/providers/entrypoints.ts";
+import { FileProvider } from "uix/providers/common.tsx";
 import { UIX } from "uix";
 import { bash } from "https://deno.land/x/bash@0.2.0/mod.ts";
 
